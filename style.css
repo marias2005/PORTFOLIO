@@ -24,7 +24,69 @@
       z-index: 1000;
       box-shadow: 0 0 20px #0ff;
     }
+  .profile-container {
+  position: relative;
+  width: 225px;
+  height: 225px;
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: #000;
+  border: 3px solid #00ffff;
 
+  /* Floating animation */
+  animation: float 4s ease-in-out infinite;
+
+  /* Smooth glow transition */
+  transition: box-shadow 0.4s ease, transform 0.4s ease;
+}
+
+/* BACKGROUND NEON GLOW LAYER */
+.profile-container::before {
+  content: "";
+  position: absolute;
+  inset: -25px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #0ff 0%, transparent 70%);
+  opacity: 0.4;              /* visible even without hover */
+  filter: blur(20px);
+  z-index: -1;
+  transition: opacity 0.4s ease, filter 0.4s ease;
+}
+
+/* HOVER – STRONG NEON EFFECT */
+.profile-container:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow:
+    0 0 20px #00ffff,
+    0 0 40px #00ffff,
+    0 0 80px rgba(0, 255, 255, 0.8);
+}
+
+.profile-container:hover::before {
+  opacity: 1;
+  filter: blur(30px);
+}
+
+/* FLOATING KEYFRAMES */
+@keyframes float {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+.profile-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;         /* 🔑 KEY: fits image properly */
+  object-position: center 20%;   /* keeps face centered */
+  image-rendering: auto; 
+  display: block;
+}
     header h1 {
       font-size: 28px;
       color: #0ff;
@@ -108,7 +170,7 @@
       left:0;
       height: 100%;
       overflow: hidden;
-      z-index: 0;
+      z-index :2;
       pointer-events: none;
     }
 
@@ -147,7 +209,7 @@
     border-right: 0.15em solid #0ff;
     white-space: nowrap;
     letter-spacing: 0.05em;
-    animation: typing 4s steps(55, end), blink-caret 0.75s step-end infinite;
+    animation: typing 5s steps(45, end), blink-caret 0.75s;
     animation-fill-mode: forwards;
     font-family: 'Poppins', monospace;
     font-size: 1.4rem;
@@ -163,7 +225,7 @@
      }
   @keyframes typing {
     from { width: 0 }
-    to { width: 80% }
+    to { width: 100% }
   }
   @keyframes blink-caret {
     from, to { border-color: transparent }
@@ -180,22 +242,7 @@
         transform: translateY(0px);
       }
     }
-    .profile-img {
-      width: 220px;
-      height: 220px;
-      border-radius: 50%;
-      box-shadow: 0 0 30px #0ff, 0 0 60px #0ff;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      object-fit: cover;
-      border: 4px solid rgba(0, 255, 255, 0.7);
-      margin-top: 40px;
-      animation: float 2.5s ease-in-out infinite;
-    }
 
-    .profile-img:hover {
-      transform: scale(1.1);
-      box-shadow: 0 0 50px #0ff, 0 0 80px #0ff;
-    }
 
     .skills-grid {
     display: grid;
@@ -272,7 +319,7 @@
   }
   .project-card img{
       width: 200px;
-      height: auto;
+      height: 70px;
 
   }
   .project-card:hover {
