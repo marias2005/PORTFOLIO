@@ -1,5 +1,3 @@
-
-
 const sectionOrder = ['home', 'skills', 'projects', 'social', 'about', 'contact'];
 let isTransitioning = false; 
 function showSection(id) {
